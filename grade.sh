@@ -25,6 +25,7 @@ javac -cp $CPATH *.java 2> CompilerErrors.txt
 if [[ $? -ne 0 ]];
 then 
 echo "ERROR: Failed to compile"
+echo "Score: 0"
 exit 1
 else echo "No compiler errors found!"
 fi
@@ -63,6 +64,9 @@ echo $WANTED_LINE
 NUMERRORS=$(($(grep -o "E" <<<"$WANTED_LINE" | wc -l)-0))
 NUMTESTS=$(($(grep -o "." <<<"$WANTED_LINE" | wc -l)-$NUMERRORS))
 NUMSUCCESS=$(($NUMTESTS-$NUMERRORS))
-GRADE=$(($(($NUMTESTS-$NUMERRORS))/$(($NUMTESTS))*100))
+GRADE=$(($(($NUMTESTS-$NUMERRORS))*$((100/$NUMTESTS))))
 
+if [[ $NUMERRORS == 0 ]]; then echo "You've passed all test cases. Your grade is 100."
+else
 echo "You passed $NUMSUCCESS tests and failed $NUMERRORS tests. Your grade is $GRADE."
+fi
