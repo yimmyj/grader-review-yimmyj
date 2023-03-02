@@ -19,23 +19,23 @@ public class TestListExamples {
     assertEquals(expected, merged);
   }
 
-  @Test(timeout = 500)
-  public void testTroll() {
-    assertEquals(true, true);
+ @Test(timeout = 500)
+  public void testIsMoon() {
+    StringChecker sc = new IsMoon();
+    List<String> left = Arrays.asList("Moon", "not", "moon");
+    List<String> expected = Arrays.asList("Moon", "moon");
+    List<String> merged = ListExamples.filter(left, sc);
+    assertEquals(expected, merged);
   }
 
   @Test(timeout = 500)
-  public void testTroll2() {
-    assertEquals(true, true);
+  public void testMergeLeftEnd() {
+    List<String> left = Arrays.asList("b", "b", "c");
+    List<String> right = Arrays.asList("a", "d");
+    List<String> merged = ListExamples.merge(left, right);
+    List<String> expected = Arrays.asList("a", "b", "b", "c", "d");
+    assertEquals(expected, merged);
   }
+  
 
-  @Test(timeout = 500)
-  public void testFreePoints() {
-    assertEquals(true, true);
-  }
-
-  @Test(timeout = 500)
-  public void testFuckYou() {
-    assertEquals(false, true);
-  }
 }
