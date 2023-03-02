@@ -63,6 +63,6 @@ echo $WANTED_LINE
 NUMERRORS=$(($(grep -o "E" <<<"$WANTED_LINE" | wc -l)-0))
 NUMTESTS=$(($(grep -o "." <<<"$WANTED_LINE" | wc -l)-$NUMERRORS))
 NUMSUCCESS=$(($NUMTESTS-$NUMERRORS))
-GRADE=$(($(($NUMTESTS-$NUMERRORS))*$((100/$NUMTESTS))))
+GRADE=$(($(($NUMTESTS-$NUMERRORS))/$(($NUMTESTS))*100))
 
 echo "You passed $NUMSUCCESS tests and failed $NUMERRORS tests. Your grade is $GRADE."
